@@ -10,9 +10,10 @@ const Board = () => {
     const newSquares = [...squares];
 
     const winnerDeclared = Boolean(CalculateWinner(newSquares));
-    const squareFilled = Boolean(newSquares[i]);
+    const squareFilled = Boolean(newSquares[i]); /* tıklanma yapıldığında buraya değer atanır. Böylece Boolean true'ya geçer */
+    console.log(squareFilled);
     if(winnerDeclared || squareFilled) {
-        return;
+        return;  /* winnerDeclared veya squareFilled değerleri true ise yani kare tıklanmışsa veya oyun kazanılmışsa işlem yapılmasını engeller */
     }
 
     newSquares[i] = xIsNext ? "X" : "O"; /* isNext true ise sıra X oyuncusunda. false ise O oyuncusunda */
@@ -25,7 +26,7 @@ const Board = () => {
   };
 
   const winner = CalculateWinner(squares);
-
+console.log(squares);
   const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`;
 
   return (
