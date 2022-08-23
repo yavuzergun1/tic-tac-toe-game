@@ -40,7 +40,7 @@ console.log("bitmedi",isFinished);
   return (
     <> 
     <div className="status">
-   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`) : "berabere kaldı"}
+   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`) : "Tie Up!"}
    
       </div>
       <div className="board-row">
