@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Square from "./Square";
+import Success from "./Success";
 import CalculateWinner from "./Winner";
 
 const Board = () => {
@@ -24,14 +25,16 @@ const Board = () => {
   const renderSquare = (i) => {
     return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   };
-
+  // 
   const winner = CalculateWinner(squares);
 console.log(squares);
-  const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`;
+  const status = winner ?  <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/>  : `Next player: ${xIsNext ? "X" : "O"}`;
 
   return (
+    <> 
     <div className="status">
       {status}
+      </div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -47,7 +50,7 @@ console.log(squares);
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-    </div>
+      </>
   );
 };
 
