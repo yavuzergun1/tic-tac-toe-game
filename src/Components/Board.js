@@ -9,10 +9,13 @@ const Board = () => {
   const [xIsNext, setXIsNext] = useState(true); /* isNext başlangıç değeri true */
   const handleClick = (i) => {
     const newSquares = [...squares];
+console.log(squares);
+
+
 
     const winnerDeclared = Boolean(CalculateWinner(newSquares));
     const squareFilled = Boolean(newSquares[i]); /* tıklanma yapıldığında buraya değer atanır. Böylece Boolean true'ya geçer */
-    console.log(squareFilled);
+    // console.log(squareFilled);
     if(winnerDeclared || squareFilled) {
         return;  /* winnerDeclared veya squareFilled değerleri true ise yani kare tıklanmışsa veya oyun kazanılmışsa işlem yapılmasını engeller */
     }
@@ -27,13 +30,18 @@ const Board = () => {
   };
   // 
   const winner = CalculateWinner(squares);
+  console.log("winner",winner);
 console.log(squares);
-  const status = winner ?  <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/>  : `Next player: ${xIsNext ? "X" : "O"}`;
+
+let isFinished = squares.some(square => square == null) /* false ise tüm kareler açıldı demek */
+console.log("bitmedi",isFinished);
+
 
   return (
     <> 
     <div className="status">
-      {status}
+   {isFinished && winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`}
+   {!isFinished && !winner && "berabere kaldı"}
       </div>
       <div className="board-row">
         {renderSquare(0)}
