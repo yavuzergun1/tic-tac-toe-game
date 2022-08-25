@@ -10,12 +10,13 @@ const Board = () => {
   const [xIsNext, setXIsNext] = useState(true); /* isNext başlangıç değeri true */
   const handleClick = (i) => {
     const newSquares = [...squares];
-console.log(squares);
 
 
 
-    const winnerDeclared = Boolean(CalculateWinner(newSquares));
+    const winnerDeclared = Boolean(CalculateWinner(newSquares)); /* kazanan olduğunda true değeri verir */
     const squareFilled = Boolean(newSquares[i]); /* tıklanma yapıldığında buraya değer atanır. Böylece Boolean true'ya geçer */
+    console.log("winnerdeclared", winnerDeclared);
+    console.log("filled",squareFilled);
     // console.log(squareFilled);
     if(winnerDeclared || squareFilled) {
         return;  /* winnerDeclared veya squareFilled değerleri true ise yani kare tıklanmışsa veya oyun kazanılmışsa işlem yapılmasını engeller */
@@ -31,19 +32,21 @@ console.log(squares);
   };
   // 
   const winner = CalculateWinner(squares);
-  console.log("winner",winner);
-console.log("squares=",squares);
+  console.log("squares=",squares);
+  const winnerLine= winner && winner[1];
+  console.log("winner line",winnerLine);
 
 let isFinished = squares.some(square => square == null) /* false ise tüm kareler açıldı demek */
 console.log("bitmedi:",isFinished);
-
+ console.log(renderSquare(0).props.value)
 
   return (
     <> 
     <div className="status">
-   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`) : ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : <TieUp setSquares={setSquares} initialSquares={initialSquares}/>) }
-   
+   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner[0]}/> : `Next player: ${xIsNext ? "X" : "O"}`) : ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner[0]}/> : <TieUp setSquares={setSquares} initialSquares={initialSquares}/>) }
       </div>
+
+
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}

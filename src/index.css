@@ -1,7 +1,6 @@
 body {
   font: 32px "Century Gothic", Futura, sans-serif;
   background-image: url(./assets/background.png);
-  color: rgb(206, 50, 50);
   margin: 20px;
 }
 
@@ -12,12 +11,17 @@ body {
 }
 
 .game-styles h1{
-  text-shadow: 5px 3px 4px  rgba(8, 8, 8, 0.98);
+  
+  color: rgb(249, 253, 7);
+  text-shadow: 5px 3px 4px  rgba(190, 172, 233, 0.98);
 }
 
 .status {
   margin: 20px;
   font-size: 24px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px  rgba(181, 170, 245, 0.98);
+color: rgb(50, 7, 241);
 }
 
 .square-styles {

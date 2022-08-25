@@ -10,11 +10,11 @@ function CalculateWinner(squares) {
         const [a,b,c] = line;
         // console.log(a);
         if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a]; // X veya  O'yu belirler
-        }
-        console.log("squares[a]=",squares[a]);
-        console.log("squares[b]=",squares[b]);
-        console.log("squares[c]=",squares[c]);
+            let winnerLine= line
+            return [squares[a], winnerLine]
+             }; // X veya  O'yu belirler
+        
+
     }
     return null
 }
