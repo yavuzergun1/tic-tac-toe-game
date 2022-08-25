@@ -1,7 +1,7 @@
 body {
   font: 32px "Century Gothic", Futura, sans-serif;
-  background-color: rgb(143, 167, 123);
-  color: white;
+  background-image: url(./assets/background.png);
+  color: rgb(206, 50, 50);
   margin: 20px;
 }
 
@@ -11,15 +11,19 @@ body {
   align-items: center;
 }
 
+.game-styles h1{
+  text-shadow: 5px 3px 4px  rgba(8, 8, 8, 0.98);
+}
+
 .status {
   margin: 20px;
   font-size: 24px;
 }
 
 .square-styles {
-  background-color: rgb(133, 74, 74);
+  background-color: rgba(252, 9, 9, 0.637);
   color: white;
-  border: 1px solid rgb(194, 141, 230);
+  border: 1px solid rgb(255, 255, 255);
   padding: 0;
   font-size: 84px;
   text-align: center;
@@ -37,4 +41,12 @@ body {
 .board-row {
   display: flex;
   flex-flow: row nowrap;
+}
+
+.alertButton button{
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  color: aliceblue;
+  text-decoration: underline;
+  text-align: center;
 }

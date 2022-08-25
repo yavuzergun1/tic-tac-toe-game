@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Square from "./Square";
 import Success from "./Success";
 import CalculateWinner from "./Winner";
+import TieUp from "./TieUp"
 
 const Board = () => {
   const initialSquares = Array(9).fill(null); /* içi boş 9 elemanlı array oluştur */
@@ -31,16 +32,16 @@ console.log(squares);
   // 
   const winner = CalculateWinner(squares);
   console.log("winner",winner);
-console.log(squares);
+console.log("squares=",squares);
 
 let isFinished = squares.some(square => square == null) /* false ise tüm kareler açıldı demek */
-console.log("bitmedi",isFinished);
+console.log("bitmedi:",isFinished);
 
 
   return (
     <> 
     <div className="status">
-   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`) : "Tie Up!"}
+   {isFinished ? ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : `Next player: ${xIsNext ? "X" : "O"}`) : ( winner ? <Success setSquares={setSquares} initialSquares={initialSquares} winner= {winner}/> : <TieUp setSquares={setSquares} initialSquares={initialSquares}/>) }
    
       </div>
       <div className="board-row">
