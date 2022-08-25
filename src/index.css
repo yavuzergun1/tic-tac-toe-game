@@ -13,7 +13,7 @@ body {
 .game-styles h1{
   
   color: rgb(249, 253, 7);
-  text-shadow: 5px 3px 4px  rgba(190, 172, 233, 0.98);
+  /* text-shadow: 5px 3px 4px  rgba(190, 172, 233, 0.98); */
 }
 
 .status {
