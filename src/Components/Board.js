@@ -88,13 +88,14 @@ const Board = () => {
               winner={winner[0]}
             />
           ) : (
-            `Next player: ${isNext ? "2. Player" : "1. Player"}`
+            `Next player: ${isNext ? "Player - 2" : "Player - 1"}`
           )
         ) : winner ? (
           <Success
             setSquares={setSquares}
             initialSquares={initialSquares}
             winner={winner[0]}
+            isNext={isNext}
           />
         ) : (
           <Draw setSquares={setSquares} initialSquares={initialSquares} />
