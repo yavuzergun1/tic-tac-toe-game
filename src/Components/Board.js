@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import Square from "./Square";
 import Success from "./Success";
 import CalculateWinner from "./Winner";
-import TieUp from "./TieUp";
+import Draw from "./Draw";
 import { useEffect } from "react";
+import clickAudio from "../assets/click sound.wav";
+import winnerAudio from "../assets/winner.mp3";
 
 const Board = () => {
   const initialSquares =
     Array(9).fill(null); /* içi boş 9 elemanlı array oluştur */
   const [squares, setSquares] =
     useState(initialSquares); /* başlangıçta squaresları boş gösterir. */
-  const [isNext, setIsNext] =
-    useState(true); /* isNext başlangıç değeri true */
+  const [isNext, setIsNext] = useState(true); /* isNext başlangıç değeri true */
   const [random, setRandom] = useState(); /* random 0 veya 1 değeri verir */
 
   useEffect(() => {
@@ -21,8 +22,14 @@ const Board = () => {
     } else {
       setRandom("X");
     }
-    setIsNext(!isNext)
+    setIsNext(!isNext);
   }, [squares]);
+
+  const playClickAudio = () => {
+    new Audio(clickAudio).play();
+  };
+
+  
 
   const handleClick = (i) => {
     /* eğer random 0 ise "O" değeri ver. 1 ise "X" değeri ver*/
@@ -42,7 +49,6 @@ const Board = () => {
     if (winnerDeclared || squareFilled) {
       return; /* winnerDeclared veya squareFilled değerleri true ise yani kare tıklanmışsa veya oyun kazanılmışsa işlem yapılmasını engeller */
     }
-    console.log(random);
     newSquares[i] =
       random; /* isNext true ise sıra X oyuncusunda. false ise O oyuncusunda */
     setSquares(newSquares);
@@ -50,16 +56,27 @@ const Board = () => {
   };
 
   const renderSquare = (i) => {
-    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
+    return (
+      <Square
+        value={squares[i]}
+        onClick={() => {
+          handleClick(i);
+          playClickAudio();
+        }}
+      />
+    );
   };
   //
   const winner = CalculateWinner(squares);
   const winnerLine = winner && winner[1];
+  console.log(winnerLine);
 
   let isFinished = squares.some(
     (square) => square == null
   ); /* false ise tüm kareler açıldı demek */
 
+  if (isFinished == false && !winner) {
+  }
   return (
     <>
       <div className="status">
@@ -80,7 +97,7 @@ const Board = () => {
             winner={winner[0]}
           />
         ) : (
-          <TieUp setSquares={setSquares} initialSquares={initialSquares} />
+          <Draw setSquares={setSquares} initialSquares={initialSquares} />
         )}
       </div>
 
